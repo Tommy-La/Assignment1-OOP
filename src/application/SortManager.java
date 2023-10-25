@@ -126,75 +126,70 @@ public class SortManager {
 				 long startTime = System.currentTimeMillis();
 			        
 				//Sorting Algorithm
-				if (sortType == "b" || sortType == "B") {
-					if(compareType == "H" || compareType == "h") {
-						Sorts.bubbleSort(shapeArray);
+				if (sortType.equals("b") || sortType.equals("B")) {
+					if(compareType.equals("h") || compareType.equals("H")) {
+						Sorts.bubbleSort(shapeArray);						
 					}
-					else if(compareType == "V" || compareType =="v") {
+					else if(compareType.equals("v") || compareType.equals("V")) {
 						Sorts.bubbleSort(shapeArray, new VolumeComparator());
 					}
-					else if(compareType == "A" || compareType == "a") {
+					else if(compareType.equals("a") || compareType.equals("A")) {
 						Sorts.bubbleSort(shapeArray, new BaseAreaComparator());
 					}
-					for (int i = 1; i < shapeArray.length - 1; i += 1000) {
-						System.out.println("Every Thousandth Value: " + shapeArray[i]);
-					};
+					
 				}
-				else if (sortType == "q" || sortType == "Q") {
-					if(compareType == "H" || compareType == "h") {
+				else if (sortType.equals("q") || sortType.equals("Q")) {
+					if(compareType.equals("h") || compareType.equals("H")) {
 						Sorts.quickSort(shapeArray, 0, shapeArray.length - 1);
 					}
-					else if(compareType == "V" || compareType =="v") {
+					else if(compareType.equals("v") || compareType.equals("V")) {
 						Sorts.quickSort(shapeArray, new VolumeComparator(), 0, shapeArray.length - 1);
 					}
-					else if(compareType == "A" || compareType == "a") {
+					else if(compareType.equals("a") || compareType.equals("A")) {
 						Sorts.quickSort(shapeArray, new BaseAreaComparator(), 0, shapeArray.length - 1);
 					}
-					for (int i = 1; i < shapeArray.length - 1; i += 1000) {
-						System.out.println("Every Thousandth Value: " + shapeArray[i]);
-					};
 				}
-				else if (sortType == "s" || sortType == "S") {
-					if(compareType == "H" || compareType == "h") {
+				else if (sortType.equals("s") || sortType.equals("S")) {
+					if(compareType.equals("h") || compareType.equals("H")) {
 						Sorts.selectionSort(shapeArray);
 					}
-					else if(compareType == "V" || compareType =="v") {
+					else if(compareType.equals("v") || compareType.equals("V")) {
 						Sorts.selectionSort(shapeArray, new VolumeComparator());
 					}
-					else if(compareType == "A" || compareType == "a") {
+					else if(compareType.equals("a") || compareType.equals("A")) {
 						Sorts.selectionSort(shapeArray, new BaseAreaComparator());
 					}
 				}
-				else if (sortType == "i" || sortType == "I") {
-					if(compareType == "H" || compareType == "h") {
+				else if (sortType.equals("i") || sortType.equals("I")) {
+					if(compareType.equals("h") || compareType.equals("H")) {
 						Sorts.insertionSort(shapeArray);
 					}
-					else if(compareType == "V" || compareType =="v") {
+					else if(compareType.equals("v") || compareType.equals("V")) {
 						Sorts.insertionSort(shapeArray, new VolumeComparator());
 					}
-					else if(compareType == "A" || compareType == "a") {
+					else if(compareType.equals("a") || compareType.equals("A")) {
 						Sorts.insertionSort(shapeArray, new BaseAreaComparator());
 					}
 				}
-				else if (sortType == "m" || sortType == "M") {
-					if(compareType == "H" || compareType == "h") {
+				else if (sortType.equals("m") || sortType.equals("M")) {
+					if(compareType.equals("h") || compareType.equals("H")) {
 						Sorts.mergeSort(shapeArray);
 					}
-					else if(compareType == "V" || compareType =="v") {
+					else if(compareType.equals("v") || compareType.equals("V")) {
 						Sorts.mergeSort(shapeArray, new VolumeComparator());
 					}
-					else if(compareType == "A" || compareType == "a") {
+					else if(compareType.equals("a") || compareType.equals("A")) {
 						Sorts.mergeSort(shapeArray, new BaseAreaComparator());
 					}
 				}
-				else if (sortType == "z" || sortType == "Z") {
-					if(compareType == "H" || compareType == "h") {
+				else if (sortType.equals("z") || sortType.equals("Z")) {
+					if(compareType.equals("h") || compareType.equals("H")) {
 						Sorts.shellSort(shapeArray);
 					}
-					else if(compareType == "V" || compareType =="v") {
+					else if(compareType.equals("v") || compareType.equals("V")) {
 						Sorts.shellSort(shapeArray, new VolumeComparator());
 					}
-					else if(compareType == "A" || compareType == "a") {
+					else if(compareType.equals("a") || compareType.equals("A")) {
 						Sorts.shellSort(shapeArray, new BaseAreaComparator());
 					}
 				};
@@ -203,15 +198,12 @@ public class SortManager {
 				long endTime = System.currentTimeMillis();
 		        long elapsedTime = endTime - startTime;
 		        System.out.println("Time elapsed: " + elapsedTime + " milliseconds");
-		        System.out.println(fileName);
-		        System.out.println("Comparing "+compareType);
-		        System.out.println("Sort with "+sortType);
-		        for (int i = 1; i < shapeArray.length - 1; i += 1000) {
+		        /*for (int i = 1; i < shapeArray.length - 1; i += 1000) {
 					System.out.println("Every Thousandth Value: " + shapeArray[i]);
-				};
+				};*/
 				// Print out the first, every thousands, last values of the sorted array
-				//if(compareType == "H" || compareType == "h") {
-					/*if (shapeArray.length > 0) {
+				if(compareType.equals("h") || compareType.equals("H")) {
+					if (shapeArray.length > 0) {
 						System.out.println("First Sorted Value: " + shapeArray[0]);
 					};
 					for (int i = 1; i < shapeArray.length - 1; i += 1000) {
@@ -219,9 +211,9 @@ public class SortManager {
 					};
 					if (shapeArray.length > 0) {
 						System.out.println("Last Sorted Value: " + shapeArray[shapeArray.length - 1]);
-					};*/
-				//}
-				/*else if(compareType == "V" || compareType =="v") {
+					};
+				}
+				else if(compareType.equals("V") || compareType.equals("v")) {
 					if (shapeArray.length > 0) {
 						System.out.println("First Sorted Value: " + shapeArray[0].getVolume());
 					}
@@ -232,7 +224,7 @@ public class SortManager {
 						System.out.println("Last Sorted Value: " + shapeArray[shapeArray.length - 1].getVolume());
 					}
 				}
-				else if(compareType == "A" || compareType == "a") {
+				else if(compareType.equals("a") || compareType.equals("A")) {
 					if (shapeArray.length > 0) {
 						System.out.println("First Sorted Value: " + shapeArray[0].getBaseArea());
 					}
@@ -242,7 +234,7 @@ public class SortManager {
 					if (shapeArray.length > 0) {
 						System.out.println("Last Sorted Value: " + shapeArray[shapeArray.length - 1].getBaseArea());
 					}
-				}*/
+				}
 			}
 	}
 
