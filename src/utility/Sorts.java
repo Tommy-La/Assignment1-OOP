@@ -1,6 +1,10 @@
 package utility;
 
 import java.util.Comparator;
+import java.util.Arrays;
+import java.util.Comparator;
+
+import shape.Shape;
 
 import shape.Shape;
 
@@ -68,25 +72,146 @@ public class Sorts {
 	}
 	
 	
-	//Merge sort algorithm
-	public static <T extends Comparable <? super T>> void mergeSort(T[] array) {
 		
+	public static <T extends Comparable<? super T>> void mergeSort(T[] array) {
+	    mergeSort(array, 0, array.length - 1);
 	}
+
+	private static <T extends Comparable<? super T>> void mergeSort(T[] array, int left, int right) {
+	    if (left < right) {
+	        int middle = (left + right) / 2;
+
+	        mergeSort(array, left, middle);
+	        mergeSort(array, middle + 1, right);
+
+	        merge(array, left, middle, right);
+	    }
+	}
+
+	private static <T extends Comparable<? super T>> void merge(T[] array, int left, int middle, int right) {
+	    int n1 = middle - left + 1;
+	    int n2 = right - middle;
+
+	    T[] leftArray = Arrays.copyOfRange(array, left, left + n1);
+	    T[] rightArray = Arrays.copyOfRange(array, middle + 1, middle + 1 + n2);
+
+	    int i = 0, j = 0, k = left;
+
+	    while (i < n1 && j < n2) {
+	        if (leftArray[i].compareTo(rightArray[j]) <= 0) {
+	            array[k] = leftArray[i];
+	            i++;
+	        } else {
+	            array[k] = rightArray[j];
+	            j++;
+	        }
+	        k++;
+	    }
+
+	    while (i < n1) {
+	        array[k] = leftArray[i];
+	        i++;
+	        k++;
+	    }
+
+	    while (j < n2) {
+	        array[k] = rightArray[j];
+	        j++;
+	        k++;
+	    }
+	}
+
 	
 	public static <T> void mergeSort(T[] array, Comparator<? super T> c) {
-		
+	    mergeSort(array, 0, array.length - 1, c);
 	}
+
+	private static <T> void mergeSort(T[] array, int left, int right, Comparator<? super T> c) {
+	    if (left < right) {
+	        int middle = (left + right) / 2;
+
+	        mergeSort(array, left, middle, c);
+	        mergeSort(array, middle + 1, right, c);
+
+	        merge(array, left, middle, right, c);
+	    }
+	}
+
+	private static <T> void merge(T[] array, int left, int middle, int right, Comparator<? super T> c) {
+	    int n1 = middle - left + 1;
+	    int n2 = right - middle;
+
+	    T[] leftArray = Arrays.copyOfRange(array, left, left + n1);
+	    T[] rightArray = Arrays.copyOfRange(array, middle + 1, middle + 1 + n2);
+
+	    int i = 0, j = 0, k = left;
+
+	    while (i < n1 && j < n2) {
+	        if (c.compare(leftArray[i], rightArray[j]) <= 0) {
+	            array[k] = leftArray[i];
+	            i++;
+	        } else {
+	            array[k] = rightArray[j];
+	            j++;
+	        }
+	        k++;
+	    }
+
+	    while (i < n1) {
+	        array[k] = leftArray[i];
+	        i++;
+	        k++;
+	    }
+
+	    while (j < n2) {
+	        array[k] = rightArray[j];
+	        j++;
+	        k++;
+	    }
+	}
+
 	
 	
 	//Selection sort algorithm
 	public static <T extends Comparable <? super T>> void selectionSort(T[] array) {
 		
-	}
+		int n = array.length;
+		 T temp;
+	    // One by one move boundary of unsorted subarray
+	    for (int i = 0; i < n-1; i++)
+	    {
+	        // Find the minimum element in unsorted array
+	        int min_idx = i;
+	        for (int j = i+1; j < n; j++)
+	            if (array[j].compareTo(array[min_idx]) <0)
+	                min_idx = j;
 	
-	public static <T> void selectionSort(T[] array, Comparator<? super T> c) {
+	        // Swap the found minimum element with the first
+	        // element
+	        temp = array[min_idx];
+	        array[min_idx] = array[i];
+	        array[i] = temp;
+	    }
 		
 	}
 	
+	public static <T> void selectionSort(T[] array, Comparator<? super T> c) {
+	    int n = array.length;
+
+	    for (int i = 0; i < n - 1; i++) {
+	        int min_idx = i;
+	        for (int j = i + 1; j < n; j++) {
+	            if (c.compare(array[j], array[min_idx]) < 0) {
+	                min_idx = j;
+	            }
+	        }
+
+	        // Swap the found minimum element with the first element
+	        T temp = array[min_idx];
+	        array[min_idx] = array[i];
+	        array[i] = temp;
+	    }
+	}
 	
 	//Quick sort algorithm
 	public static <T extends Comparable <? super T>> void quickSort(Shape[] array , int low, int high) {
