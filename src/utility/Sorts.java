@@ -256,12 +256,43 @@ public class Sorts {
 	
 	
 	//Shell sort algorithm, algorithm of choice
-	public static <T extends Comparable <? super T>> void shellSort(T[] array) {
-		
-	}
+		 public static <T extends Comparable<? super T>> void shellSort(T[] array) {
+		    int n = array.length;
+
+		    // Start with a large gap and reduce it in each iteration
+		    for (int gap = n / 2; gap > 0; gap /= 2) {
+		        for (int i = gap; i < n; i++) {
+		            T temp = array[i];
+
+		            int j;
+		            for (j = i; j >= gap && array[j - gap].compareTo(temp) > 0; j -= gap) {
+		                array[j] = array[j - gap];
+		            }
+		            array[j] = temp;
+		        }
+		    }
+		}
+
+	
 	
 	public static <T> void shellSort(T[] array, Comparator<? super T> c) {
-		
+	    int n = array.length;
+	    
+	    // Start with a large gap and reduce it in each iteration
+	    for (int gap = n / 2; gap > 0; gap /= 2) {
+	        for (int i = gap; i < n; i++) {
+	            T temp = array[i];
+
+	            int j;
+	            for (j = i; j >= gap && c.compare(array[j - gap], temp) > 0; j -= gap) {
+	                array[j] = array[j - gap];
+	            }
+	            array[j] = temp;
+	        }
+	    }
 	}
 	
 }
+
+	
+
